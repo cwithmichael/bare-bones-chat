@@ -24,6 +24,7 @@ function serveStatic(response, cache, absPath) {
 		sendFile(response, absPath, cache[absPath]);
 	} else {
 		fs.exists(absPath, function(exists) {
+			console.log(absPath);
 			if (exists) {
 				fs.readFile(absPath, function(err, data) {
 					if (err) {
@@ -46,6 +47,7 @@ var server = http.createServer(function(req, res) {
 	if (req.url == '/') {
 		filePath = 'public/index.html';
 	} else {
+		console.log(req.url);
 		filePath = 'public' + req.url;
 	}
 	
